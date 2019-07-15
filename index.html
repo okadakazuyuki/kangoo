@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="Ja-jp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <title>kangoo - hero-image slide plugin - three.js</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    line-height: 1;
+    box-sizing: border-box;
+    }
+    body {
+      font-family:"Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "メイリオ", sans-serif;
+    }
+    li {
+      list-style: none;
+    }
+    .wait-wrapper {
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 20000;
+   }
+   .stage,
+   #stage {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+   }
+   .stage canvas,
+   #stage canvas {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%,-50%);
+   }
+  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/smartphone.css" media="screen and (max-width:757px)">
+  <link rel="stylesheet" href="assets/css/top.css" class="page-css">
+  <link rel="stylesheet" href="assets/css/top-sp.css" media="screen and (max-width:757px)" class="page-css-sp">
+</head>
+<body id="top-page">
+  <div id="stage"></div>
+  <div class="stage stage01"></div>
+  <div style="opacity:0"><img src="assets/images/web-site/test.jpg" alt="" width="1980" height="1320" id="base-img"></div>
+  <script id="vertex" type="x-shader/x-vertex">
+   varying vec2 vUv;
+   void main(){
+     vUv = uv;
+     gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+   }
+  </script>
+  <script id="fragment" type="x-shader/x-fragment">
+   varying vec2 vUv;
+   uniform sampler2D uTex;
+   uniform bool changingFlg;
+   uniform float changing;
+   uniform sampler2D uTex2;
+   uniform sampler2D disp;
+   void main(){
+
+     if(changingFlg == false){
+       vec4 smpColor0 = texture2D(uTex,vUv);
+       gl_FragColor = smpColor0; //+ smpColor0;//smpColor1;
+       //gl_FragColor.a = 0.1;
+     }else{
+       vec4 disp =  texture2D(disp, vUv);
+
+       vec2 dispP = vec2(vUv.x + changing*disp.r,vUv.y);
+       vec2 dispP2 = vec2(vUv.x - (1.0 - changing) * disp.r , vUv.y);
+
+       vec4 smpColor0 = texture2D(uTex,dispP);
+       vec4 smpColor1 = texture2D(uTex2,dispP2);
+       gl_FragColor = mix(smpColor0,smpColor1,changing);
+     }
+    }
+  </script>
+  <script src="assets/js/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+  <script src="assets/js/three.js"></script>
+  <script src="assets/js/kangoo.js"></script>
+</body>
+</html>
