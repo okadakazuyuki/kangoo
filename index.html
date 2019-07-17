@@ -8,10 +8,10 @@
   <title>kangoo - hero-image slide plugin - three.js</title>
   <style>
     * {
-      padding: 0;
-      margin: 0;
-    line-height: 1;
-    box-sizing: border-box;
+     padding: 0;
+     margin: 0;
+     line-height: 1;
+     box-sizing: border-box;
     }
     body {
       font-family:"Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "メイリオ", sans-serif;
@@ -44,6 +44,14 @@
      left: 50%;
      transform: translate(-50%,-50%);
    }
+   .photo-wrap {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     overflow: hidden;
+   }
   </style>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/smartphone.css" media="screen and (max-width:757px)">
@@ -51,44 +59,27 @@
   <link rel="stylesheet" href="assets/css/top-sp.css" media="screen and (max-width:757px)" class="page-css-sp">
 </head>
 <body id="top-page">
-  <div id="stage"></div>
-  <div class="stage stage01"></div>
-  <div style="opacity:0"><img src="assets/images/web-site/test.jpg" alt="" width="1980" height="1320" id="base-img"></div>
-  <script id="vertex" type="x-shader/x-vertex">
-   varying vec2 vUv;
-   void main(){
-     vUv = uv;
-     gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-   }
-  </script>
-  <script id="fragment" type="x-shader/x-fragment">
-   varying vec2 vUv;
-   uniform sampler2D uTex;
-   uniform bool changingFlg;
-   uniform float changing;
-   uniform sampler2D uTex2;
-   uniform sampler2D disp;
-   void main(){
-
-     if(changingFlg == false){
-       vec4 smpColor0 = texture2D(uTex,vUv);
-       gl_FragColor = smpColor0; //+ smpColor0;//smpColor1;
-       //gl_FragColor.a = 0.1;
-     }else{
-       vec4 disp =  texture2D(disp, vUv);
-
-       vec2 dispP = vec2(vUv.x + changing*disp.r,vUv.y);
-       vec2 dispP2 = vec2(vUv.x - (1.0 - changing) * disp.r , vUv.y);
-
-       vec4 smpColor0 = texture2D(uTex,dispP);
-       vec4 smpColor1 = texture2D(uTex2,dispP2);
-       gl_FragColor = mix(smpColor0,smpColor1,changing);
-     }
-    }
-  </script>
+  <div class="photo-wrap">
+    <div class="stage stage01"></div>
+    <div style="opacity:0"><img src="assets/images/web-site/test.jpg" alt="" width="1980" height="1320" id="base-img"></div>
+  </div>
   <script src="assets/js/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
   <script src="assets/js/three.js"></script>
   <script src="assets/js/kangoo.js"></script>
+  <script>
+   var domobj = document.querySelectorAll(".stage");
+   domobj.forEach(function(el){
+     new kangoo(
+       {
+         parent : el, // need dom obj
+         images : ["assets/images/web-site/test.jpg","assets/images/web-site/test2.jpg","assets/images/web-site/shutter/639779875.jpg","assets/images/web-site/shutter/700341298.jpg","assets/images/web-site/shutter/268459634.jpg"],// need slide images
+         dulation : 0.7, // set transform dulation at seconds
+         delay : 5,// set each slide delay at seconds
+         mode : "2-ultra-light"//set by dist image name
+       }
+     );
+   });
+  </script>
 </body>
 </html>

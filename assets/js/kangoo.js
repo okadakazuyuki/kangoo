@@ -9,7 +9,7 @@ var kangoo = function(option){
     renderer.render( scene, camera );
     var now_time = (Date.now() - start_time)/1000;
     if(_scene.current < images.length-1){
-      if( now_time > ( _scene.current + 1 ) * delay && _scene.change_finished ) {
+      if( now_time > ( _scene.current + 1 ) * delay + ( _scene.current + 1 ) * dulation && _scene.change_finished ) {
         _scene.change_finished = false;
         _scene.changing = true;
         change(textures[_scene.current],textures[_scene.current + 1]);
@@ -75,7 +75,6 @@ var kangoo = function(option){
   var size = 1;
   var changing = 0.0;
   var canvas = parent;
-  var normal_sheder = document.getElementById("fragment").textContent;
   var textures = [];
   var disp = loader.load('assets/images/dist/'+mode+'.jpg');
 
@@ -94,8 +93,8 @@ var kangoo = function(option){
         changingFlg : { type:"b", value: false },
         changing :{type: "f",value: changing }
       },
-      vertexShader: document.getElementById("vertex").textContent,
-      fragmentShader: normal_sheder
+      vertexShader: vertex,
+      fragmentShader: flagment
     });
 
 
@@ -146,25 +145,34 @@ var kangoo = function(option){
     
 });//End  callBack texture loaded
 
+
+  var vertex = '   varying vec2 vUv;'+
+'   void main(){'+
+'     vUv = uv;'+
+'     gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );'+
+'   }';
+
+  var  flagment = 'varying vec2 vUv;'+
+'   uniform sampler2D uTex;'+
+'   uniform bool changingFlg;'+
+'   uniform float changing;'+
+'   uniform sampler2D uTex2;'+
+'   uniform sampler2D disp;'+
+'   void main(){'+
+
+'     if(changingFlg == false){'+
+'       vec4 smpColor0 = texture2D(uTex,vUv);'+
+'       gl_FragColor = smpColor0;'+
+'     }else{'+
+'       vec4 disp =  texture2D(disp, vUv);'+
+'       vec2 dispP = vec2(vUv.x + changing*disp.r,vUv.y);'+
+'       vec2 dispP2 = vec2(vUv.x - (1.0 - changing) * disp.r , vUv.y);'+
+
+'       vec4 smpColor0 = texture2D(uTex,dispP);'+
+'       vec4 smpColor1 = texture2D(uTex2,dispP2);'+
+'       gl_FragColor = mix(smpColor0,smpColor1,changing);'+
+'     }'+
+'    }';
+
 };//End kangoo
-
-
-$(function(){
-  var domobj2 = document.querySelectorAll(".stage");
-  var domobj = document.getElementById("stage");
-  domobj2.forEach(function(el){
-    new kangoo(
-      {
-        parent : el, // need dom obj
-        images : ["assets/images/web-site/test.jpg","assets/images/web-site/test2.jpg","assets/images/web-site/shutter/639779875.jpg","assets/images/web-site/shutter/700341298.jpg","assets/images/web-site/shutter/268459634.jpg"],// need slide images
-        dulation : 0.5, // set transform dulation at seconds
-        delay : 5,// set each slide delay at seconds
-        mode : "1-2",//set by dist image name
-        //autoPlay : true
-      }
-    );
-  });
-});
-//console.log(kangoo,domobj);
-
 
