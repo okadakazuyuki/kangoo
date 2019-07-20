@@ -3,7 +3,6 @@ var kangoo = function(option){
     mes = mes ? mes : "some error happened";
     throw new Error(mes);
   };
-  //error("run before this line" );
 
   var render = function(){
     renderer.render( scene, camera );
@@ -96,8 +95,6 @@ var kangoo = function(option){
       vertexShader: vertex,
       fragmentShader: flagment
     });
-
-
 
     var parent_w = parent.clientWidth;
     var parent_h = parent.clientHeight;
