@@ -121,7 +121,8 @@
        //mode : "1"//set by dist image name
      }
    );
-   $(".menues a").on("click",function(){
+   $(".menues a").on("click",function(e){
+     e.preventDefault();
      var name = $(this).data("name");
      if(_k.changematelial(name)){
        $(".menues a").removeClass("current");
