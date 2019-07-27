@@ -1,0 +1,193 @@
+.all-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.oregano {
+  font-family: 'Oregano', cursive;
+}
+.kaushan {
+  font-family: 'Kaushan Script', cursive;
+}
+.yellowtail {
+  font-family: 'Yellowtail', cursive;
+}
+.damion {
+  font-family: 'Damion', cursive;
+}
+.yesteryear {
+  font-family: 'Yesteryear', cursive;
+}
+.mrde-haviland {
+  font-family: 'Mr De Haviland', cursive;
+}
+
+.effect-change-button {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  background: rgba(42,142,200,.75);
+  transition: background .5s;
+  z-index: 100;
+  transition: right 0.8s;
+  overflow: hidden;
+}
+.effect-change-button:hover {
+  background: rgba(42,142,200,1);
+}
+.effect-change-button:before,
+.effect-change-button:after,
+.effect-change-button span {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: rgba(255,255,255,1);
+  transition: all 0.8s;
+}
+.effect-change-button:before,
+.effect-change-button:after {
+  content: "";
+}
+.effect-change-button span {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.effect-change-button.on span {
+  margin-left: -100%;
+}
+.effect-change-button:after {
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.effect-change-button.on:after {
+  top: 34.5%;
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+.effect-change-button:before {
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.effect-change-button.on:before {
+  top: 65.5%;
+  transform: translate(-50%,-50%) rotate(-45deg);
+}
+.effect-change-button.on {
+  right: 300px;
+}
+.menu {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: rgba(43,120,200,.6);
+  box-sizing: border-box;
+  padding: 60px 50px;
+  transition: right .8s;
+}
+.menu.on {
+  right: 0;
+}
+.menu .title {
+  color: #fff;
+  font-size: 24px;
+  padding-bottom: 19px;
+}
+.menu a {
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  margin-bottom: 9px;
+  background: rgba(255,255,255,0);
+  transition: background .35s;
+}
+@media (min-width: 1025px){
+  .menu a:hover {
+    background: rgba(255,255,255,.3);
+  } 
+}
+
+.main-texts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  color: #fff;
+  z-index: 2000;
+}
+
+.main-texts .plugin-name {
+  font-size: 110px;
+  width: 282px;
+  margin: 0 auto 18px;
+  font-weight: normal;
+  position: relative;
+  opacity: 1;
+  transition: opacity .5s;
+  text-align: left;
+}
+.main-texts .plugin-name span {
+  display: inline-block;
+  width: 0;
+  height: auto;
+  overflow: hidden;
+  line-height: 1.2;
+  transition: width 1s;
+  text-align: left;
+}
+.main-texts.on .plugin-name span {
+  width: 282px;
+}
+.main-texts .plugin-name:before,
+.main-texts .plugin-name:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 3px;
+  transform: rotate(-1deg);
+  bottom: 9px;
+  background: #fff;
+  left: 0;
+  transition: width 0.7s;
+  transition-delay: 0.15s;
+}
+.main-texts.on  .plugin-name{
+  opacity: 1;
+}
+
+.main-texts.on .plugin-name:before,
+.main-texts.on .plugin-name:after {
+  width: 100%;
+}
+.main-texts .plugin-name:before {
+  bottom: 3px;
+  transform: rotate(-1.5deg);
+}
+.main-texts .lead {
+  font-size: 18px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity .5s,height .5s;
+  transition-delay: 1.6s;
+  line-height: 1.2;
+}
+.main-texts.on .lead {
+  height: auto;
+  opacity: 1;
+}

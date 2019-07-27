@@ -13,6 +13,19 @@ var kangoo = function(option){
         _scene.changing = true;
         change(textures[_scene.current],textures[_scene.current + 1]);
       }
+    }else{
+      if(loop){
+        if(_scene.current == images.length-1){
+          if( now_time > ( _scene.current + 1 ) * delay + ( _scene.current + 1 ) * dulation && _scene.change_finished ) {
+            _scene.change_finished = false;
+            _scene.changing = true;
+            change(textures[_scene.current],textures[0]);
+            }
+        }else{
+          start_time = Date.now();
+          _scene.current = 0;
+        }
+      }
     }
     requestAnimationFrame(render);
   };
@@ -41,8 +54,11 @@ var kangoo = function(option){
     });
   };
 
+  
+
   var parent = option.parent || error("no selected dom obj"); // need dom obj
   var images = option.images || error("no selected images");// need slide images
+  var loop = option.images || true;// need slide images
   var dulation = option.dulation || 0.5; // set transform dulation at seconds
   var delay = option.delay || 5;// set each slide delay at seconds
   var mode = option.mode || 1;//set by dist image name
@@ -114,6 +130,8 @@ var kangoo = function(option){
     mesh.position.z = 0;
     scene = new THREE.Scene();
     scene.add( mesh );
+    obj = {"mesh": mesh};
+    
 
     window.addEventListener("resize", function() {
       var img_w = texture.image.width;
@@ -171,5 +189,13 @@ var kangoo = function(option){
 '     }'+
 '    }';
 
+
+  this.changematelial = function(name){
+    if(!mesh) return false;
+    var new_disp = loader.load('assets/images/dist/'+name+'.jpg');
+    mesh.material.uniforms.disp.value = new_disp;
+  };
+  
+  return this;
 };//End kangoo
 

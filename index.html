@@ -6,6 +6,9 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <title>kangoo - hero-image slide plugin - three.js</title>
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Oregano&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Damion|Kaushan+Script|Mr+De+Haviland|Yellowtail|Yesteryear&display=swap" rel="stylesheet">
+  <link href="assets/css/demo.css" rel="stylesheet">
   <style>
     * {
      padding: 0;
@@ -14,19 +17,10 @@
      box-sizing: border-box;
     }
     body {
-      font-family:"Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "メイリオ", sans-serif;
+      font-family:'Libre Baskerville', serif;
     }
     li {
       list-style: none;
-    }
-    .wait-wrapper {
-      position: absolute;
-      top:0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: 20000;
    }
    .stage,
    #stage {
@@ -42,7 +36,7 @@
      position: absolute;
      top: 50%;
      left: 50%;
-     transform: translate(-50%,-50%);
+     transform: translate(-50%,-50%) scale(1.001);
    }
    .photo-wrap {
      position: absolute;
@@ -51,48 +45,85 @@
      width: 100vw;
      height: 100vh;
      overflow: hidden;
+     line-height: 0;
    }
   </style>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/smartphone.css" media="screen and (max-width:757px)">
-  <link rel="stylesheet" href="assets/css/top.css" class="page-css">
-  <link rel="stylesheet" href="assets/css/top-sp.css" media="screen and (max-width:757px)" class="page-css-sp">
 </head>
 <body id="top-page">
-  <div class="photo-wrap">
-    <div class="stage stage01"></div>
-    <div style="opacity:0"><img src="assets/images/web-site/test.jpg" alt="" width="1980" height="1320" id="base-img"></div>
-  </div>
+
+  <div class="all-wrap">
+
+    <div class="photo-wrap">
+      <div id="stage"></div>
+      <!-- <div style="opacity:0"><img src="assets/images/web-site/test.jpg" alt="" width="1980" height="1320" id="base-img"></div> -->
+    </div><!-- photo-wrap -->
+
+
+    <a for="#" class="effect-change-button" title="Change effects"><span></span></a>
+    <div class="menu">
+      <p class="title">Effects</p>
+      <ul class="menues">
+        <li><a href="#" data-name="1">1</a></li>
+        <!-- <li><a href="#" data-name="1-light">1-light</a></li>
+        <li><a href="#" data-name="1-ultra-light">1-ultra-light</a></li> -->
+        <li><a href="#" data-name="2">2</a></li>
+        <li><a href="#" data-name="2-light">2-light</a></li>
+        <li><a href="#" data-name="2-ultra-light">2-ultra-light</a></li>
+        <li><a href="#" data-name="3">3</a></li>
+        <li><a href="#" data-name="4">4</a></li>
+        <li><a href="#" data-name="5">5</a></li>
+        <li><a href="#" data-name="6">6</a></li>
+        <!-- <li><a href="#" data-name="6-light">6-light</a></li> -->
+      </ul>
+    </div><!-- menu -->
+
+
+
+    <div class="main-texts">
+      <h1 class="plugin-name oregano"><span>Kangoo</span></h1>
+      <p class="lead">three.js slideshow plugin</p>
+    </div><!-- main-texts -->
+
+
+
+  </div><!-- all-wrap -->
+
+
+
   <script src="assets/js/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
   <script src="assets/js/three.js"></script>
   <script src="assets/js/kangoo.js"></script>
+  <script src="assets/js/demo.js"></script>
   <script>
-   var domobj = document.querySelectorAll(".stage");
-   domobj.forEach(function(el){
-     new kangoo(
-       {
-         parent : el, // need dom obj
-         images : [
-           "assets/images/sample-images/mini/image01.jpg",
-           "assets/images/sample-images/mini/image02.jpg",
-           "assets/images/sample-images/mini/image03.jpg",
-           "assets/images/sample-images/mini/image04.jpg",
-           "assets/images/sample-images/mini/image05.jpg",
-           "assets/images/sample-images/mini/image06.jpg",
-           "assets/images/sample-images/mini/image07.jpg",
-           "assets/images/sample-images/mini/image08.jpg",
-           "assets/images/sample-images/mini/image09.jpg",
-           "assets/images/sample-images/mini/image10.jpg",
-           "assets/images/sample-images/mini/image11.jpg",
-           "assets/images/sample-images/mini/image12.jpg"
-         ],// need slide images
-         dulation : 1, // set transform dulation at seconds
-         delay : 3.5,// set each slide delay at seconds
-         mode : "2-ultra-light"//set by dist image name
-         //mode : "1"//set by dist image name
-       }
-     );
+
+   var domobj = document.getElementById("stage");
+   var _k =  new kangoo(
+     {
+       parent : domobj, // need dom obj
+       images : [
+         "assets/images/sample-images/mini/image01.jpg",
+         "assets/images/sample-images/mini/image02.jpg",
+         "assets/images/sample-images/mini/image03.jpg",
+         "assets/images/sample-images/mini/image04.jpg",
+         "assets/images/sample-images/mini/image05.jpg",
+         "assets/images/sample-images/mini/image06.jpg",
+         "assets/images/sample-images/mini/image07.jpg",
+         "assets/images/sample-images/mini/image08.jpg",
+         "assets/images/sample-images/mini/image09.jpg",
+         "assets/images/sample-images/mini/image10.jpg",
+         "assets/images/sample-images/mini/image11.jpg",
+         "assets/images/sample-images/mini/image12.jpg"
+       ],// need slide images
+       dulation : 1, // set transform dulation at seconds
+       delay : 3.5,// set each slide delay at seconds
+       mode : "2-ultra-light"//set by dist image name
+       //mode : "1"//set by dist image name
+     }
+   );
+   $(".menues a").on("click",function(){
+     var name = $(this).data("name");
+     _k.changematelial(name);
    });
   </script>
 </body>
