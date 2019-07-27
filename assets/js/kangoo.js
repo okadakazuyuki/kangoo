@@ -194,6 +194,7 @@ var kangoo = function(option){
     if(!mesh) return false;
     var new_disp = loader.load('assets/images/dist/'+name+'.jpg');
     mesh.material.uniforms.disp.value = new_disp;
+    return true;
   };
   
   return this;

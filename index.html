@@ -68,7 +68,7 @@
         <li><a href="#" data-name="1-ultra-light">1-ultra-light</a></li> -->
         <li><a href="#" data-name="2">2</a></li>
         <li><a href="#" data-name="2-light">2-light</a></li>
-        <li><a href="#" data-name="2-ultra-light">2-ultra-light</a></li>
+        <li><a href="#" data-name="2-ultra-light" class="current">2-ultra-light</a></li>
         <li><a href="#" data-name="3">3</a></li>
         <li><a href="#" data-name="4">4</a></li>
         <li><a href="#" data-name="5">5</a></li>
@@ -123,7 +123,10 @@
    );
    $(".menues a").on("click",function(){
      var name = $(this).data("name");
-     _k.changematelial(name);
+     if(_k.changematelial(name)){
+       $(".menues a").removeClass("current");
+       $(this).addClass("current");
+     };
    });
   </script>
 </body>

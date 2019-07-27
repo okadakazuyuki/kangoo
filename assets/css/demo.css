@@ -81,18 +81,19 @@
   transform: translate(-50%,-50%) rotate(-45deg);
 }
 .effect-change-button.on {
-  right: 300px;
+  right: 260px;
 }
 .menu {
   position: fixed;
-  right: -300px;
+  right: -260px;
   top: 0;
-  width: 300px;
+  width: 260px;
   height: 100%;
   background: rgba(43,120,200,.6);
   box-sizing: border-box;
   padding: 60px 50px;
   transition: right .8s;
+  z-index: 3000;
 }
 .menu.on {
   right: 0;
@@ -102,8 +103,7 @@
   font-size: 24px;
   padding-bottom: 19px;
 }
-.menu a {
-}
+
 .menu a {
   color: #fff;
   text-decoration: none;
@@ -112,14 +112,28 @@
   box-sizing: border-box;
   margin-bottom: 9px;
   background: rgba(255,255,255,0);
-  transition: background .35s;
+  transition: background .35s,color .35s;
+  position: relative;
 }
 @media (min-width: 1025px){
   .menu a:hover {
     background: rgba(255,255,255,.3);
   } 
 }
-
+.menu a.current {
+  background: #fff;
+  color: rgb(43,120,200);;
+}
+.menu a.current:after {
+  content: "now!!";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  color: #f00;
+  font-size: 10px;
+  transform: translateY(-50%);
+}
 .main-texts {
   position: absolute;
   top: 50%;
