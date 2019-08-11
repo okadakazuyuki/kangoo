@@ -8,12 +8,10 @@ ___
 
 利用法は
 TweenMaxとthree.jsを読み込んでnewしてdomと必要情報入れ込みます。  
-
-    
-   var domobj = document.getElementById("stage");
-   var _k =  new kangoo(
-     {
-       parent : domobj, // need dom obj
+    var domobj = document.getElementById("stage");
+    var _k =  new kangoo(
+    {
+      parent : domobj, // need dom obj
        images : [
          "assets/images/sample-images/mini/image01.jpg",
          "assets/images/sample-images/mini/image02.jpg",
