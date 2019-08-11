@@ -31,5 +31,5 @@ ___
        dulation : 1, // set transform dulation at seconds  
        delay : 3.5,// set each slide delay at seconds  
      }  
-   );  
+    );  
 ___
