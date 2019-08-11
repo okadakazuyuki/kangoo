@@ -5,7 +5,9 @@ ___
 こちらのプロジェクトを元にスライドショーに仕立て直しました。  
 https://github.com/robin-dela/hover-effect
 ___
-
+  
+  
+  
 利用法は
 TweenMaxとthree.jsを読み込んでnewしてdomと必要情報入れ込みます。
 ___
