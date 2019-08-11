@@ -7,7 +7,8 @@ https://github.com/robin-dela/hover-effect
 ___
 
 利用法は
-TweenMaxとthree.jsを読み込んでnewしてdomと必要情報入れ込みます。  
+TweenMaxとthree.jsを読み込んでnewしてdomと必要情報入れ込みます。
+___
     var domobj = document.getElementById("stage");  
     var _k =  new kangoo(  
     {  
@@ -31,3 +32,4 @@ TweenMaxとthree.jsを読み込んでnewしてdomと必要情報入れ込みま�
        delay : 3.5,// set each slide delay at seconds  
      }  
    );  
+___
