@@ -9,7 +9,8 @@ ___
   
   
 利用法は
-TweenMaxとthree.jsを読み込んでnewしてdomと必要情報入れ込みます。
+TweenMaxとthree.js、kangoo.jsを読み込み後、  
+newしてdomと必要情報入れ込みます。
 ___
     var domobj = document.getElementById("stage");  
     var _k =  new kangoo(  
