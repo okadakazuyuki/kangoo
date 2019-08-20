@@ -1,6 +1,11 @@
 # kangoo
 
 three.js・webGlを利用した、スライドショープラグインです。
+  
+example  
+___
+https://okadakazuyuki.github.io/kangoo/
+
 ___
 こちらのプロジェクトを元にスライドショーに仕立て直しました。  
 https://github.com/robin-dela/hover-effect
